@@ -87,7 +87,7 @@ for a in range(1,args.seeds):
 	optim_function = K.mean((loss1 + loss2 + loss3) + 0.1*(loss_cov1 + loss_cov2 + loss_cov3))
 	grad_ip = normalize(K.gradients(optim_function, input_tensor)[0])
 	iterate = K.function([input_tensor], [loss1, loss2, loss3, loss_cov1, loss_cov2, loss_cov3, grad_ip])
-	for _ in range(10):
+	for _ in range(1000):
 		loss_val1, loss_val2, loss_val3, loss_cov1, loss_cov2, loss_cov3, gradients = iterate([test_case])
 		grads_value = constraint_light(gradients)
 		test_case += grads_value * 10
